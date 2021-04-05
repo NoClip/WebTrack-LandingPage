@@ -87,8 +87,6 @@ function isElementInViewport(el) {
 }
 
 function setMenuActiveOnScroll() {
-    let documentX = document.scrollTop;
-    console.log();
     for (let section of sectionsList) {
         if (isElementInViewport(section)) {
             setMenuActive(section.id);
