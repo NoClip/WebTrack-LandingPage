@@ -2,12 +2,18 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
+* [Description](#Description)
+* [Prerequisite](#Prerequisite)
+* [Installation](#Installation)
 
-## Instructions
+## Description
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This project improves a landing page using Javascript `js/app.js`:
+- Generates menu items dynamically that index the sections inside the page.
+- Styles active sections (sections visible in the current view)
+- Styles active menu item
+## Prerequisite
+- Only a web browser
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+## Installation
+- Simply clone or download repo, run index.html in any browser.
