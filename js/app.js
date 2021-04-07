@@ -37,7 +37,13 @@ function createMenuItem(ItemTargetId, ItemText) {
     let menuItemLink = document.createElement('a');
 
     menuItemLink.className = 'menu__link';
-    menuItemLink.href = '#' + ItemTargetId;
+    // menuItemLink.href = '#' + ItemTargetId;
+
+    menuItemLink.addEventListener("click", (e) => {
+        const section = document.querySelector('#' + e.target.dataset.sectionId);
+        section.scrollIntoView({ block: 'start', behavior: "smooth" });
+    });
+
     // add section id to the li elemant data
     menuItemLink.dataset.sectionId = ItemTargetId;
     menuItemLink.innerText = ItemText;
@@ -45,27 +51,6 @@ function createMenuItem(ItemTargetId, ItemText) {
     menuItem.appendChild(menuItemLink);
 
     return menuItem;
-}
-
-// MenuBar onClick event handler
-function onMenuBarClick(event) {
-    // only run when clicking on "A" tags
-    if (event.target.nodeName === "A") {
-        // get section id from the data attribute (added in createMenuItem)
-        const sectionId = event.target.dataset.sectionId;
-
-        // section element
-        const targetSection = document.querySelector('#' + sectionId);
-
-        // scroll to the section 
-        targetSection.scrollIntoView({ block: 'end', behavior: 'smooth' });
-
-        // set section as active
-        setSectionActive(sectionId);
-
-        // set the clicked menu item as active
-        setMenuActive(sectionId);
-    }
 }
 
 // set section as active
@@ -120,7 +105,7 @@ function isElementInViewport(el) {
 // and set the section as active also
 function setMenuActiveOnScroll() {
     for (let section of sectionsList) {
-        if (isElementInViewport(section)) {
+        if (isElementInViewport(section.children[0].children[0])) {
             setSectionActive(section.id);
             setMenuActive(section.id);
         }
@@ -146,9 +131,6 @@ function generateMenuItems() {
 window.addEventListener('scroll', setMenuActiveOnScroll);
 
 // Scroll to anchor ID using scrollTO event
-function addEventListenerToMenuBar() {
-    menuBar.addEventListener('click', onMenuBarClick);
-}
 
 /**
  * End Main Functions
@@ -160,6 +142,5 @@ function addEventListenerToMenuBar() {
 generateMenuItems();
 
 // Scroll to section on link click
-addEventListenerToMenuBar();
 
 // Set sections as active
